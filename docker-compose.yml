@@ -1,0 +1,15 @@
+version: "3.5"
+
+networks:
+  seguro-unimed-application-network:
+    name: seguro-unimed-application-network
+
+services:
+  seguro-unimed-application:
+    container_name: seguro-unimed-application
+    build: .
+    networks:
+      seguro-unimed-application-network:
+    ports:
+      - '8080:8080'
+    restart: unless-stopped
