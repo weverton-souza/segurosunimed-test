@@ -1,24 +1,45 @@
 # Custumer Service
 
-### Requisitos
+### Tecnologias Utilizadas
 
 1. JDK 11
-1. Maven 3
+2. Maven 3
+3. OpenFeign
+4. Flyway
+5. Swagger / Swagger UI
+6. Lombok (Foi adicionado um arquivo de configuração para o plugin do lombok **lombok.config**)
+7. Docker (Arquivos de configuração para criação de imagem e container). Foram adicionados dois arquivos de build do docker à raiz do projeto, Dockerfile e docker-compose.yaml
 
-### Comandos Prova Prática
+### Instalação
 
-1. Clone o projeto: `https://github.com/filipemaulerm/segurosunimed-test.git`
-2. Execute a aplicação.
-3. Acesse: `http://localhost:8080/customers`
-4. Neste ponto será retornado a lista de clientes pré-cadastrada.
-5. Faça filtros de cliente nas buscas por nome, email e genero.
-6. Adicione endpoints para criar um novo cliente, editar um cliente e excluir um cliente.
-7. Valide os dados antes de cadastrar ou editar.
-8. Pagine a listagem de clientes.
-9. Possibilite o cadastro de múltiplos endereços para um cliente.
-10. No cadastro de endereço permita inserir apenas o CEP carregando os dados via consumo do serviço: https://viacep.com.br/
-11. Faça filtros de clientes nas buscas agora para os campos cidade e estado
-12. Envie a url do seu repositório no github para análise.
+- Para instalar o projeto, basta executar o comando abaixo na raiz do projeto:
 
-Obs.: Será um diferencial implementações como: tratamento de exceções (RestControllerAdvice), testes, validações, uso de mecanismos modernos da linguagem, frontend, autenticação e documentação. 
+```sh 
+  docker build -f Dockerfile --tag example-api:latest .
+```
+Após a execução do comando acima, será criada uma imagem com o nome **example-api** e a tag **latest**.
 
+- Para executar o container, basta executar o comando abaixo:
+
+```sh 
+  docker run -p 8080:8080 example-api:latest
+```
+
+- Para instalar o projeto via docker-compose, basta executar o comando abaixo na raiz do projeto:
+
+```sh 
+  docker-compose -f docker-compose.yaml up -d
+```
+
+**Obs**: A configuração do dockerfile é multi-stage, ou seja, ele é responsável por compilar o projeto e gerar o pacote .jar. Não sendo necessário ter o java, maven ou qualquer outra dependência instalada na máquina. Apenas o docker.
+
+
+### Documentação
+
+- Para acessar a documentação da API, basta acessar o link abaixo:
+
+```sh 
+  http://localhost:8080/swagger-ui.html
+```
+
+![alt text](docs/swagger-ui.png)
